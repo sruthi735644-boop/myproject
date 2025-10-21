@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html>
+
+
+<style>
+  body{
+text-align: center;
+background-color: rgb(248, 246, 243);
+  }
+    #dv1{
+        width: 600px;
+        height: 300px;
+        background-color: rgb(205, 207, 194);
+        padding-left: 20px;
+        padding-top: 50px;
+        margin-left: 350px;
+        
+        
+    }
+/* #h {
+      margin-left: 100px;
+    }
+    #score{
+      margin-left: 100px;
+    } */
+    /* #modal {
+      display: none; 
+      
+      left: 0;
+      top: 0;
+      width: 40%;
+      height: 80%;
+      background-color: rgb(231, 228, 228);
+    }
+
+    /* Modal box */
+    /* #modal-content {
+      background: rgb(246, 250, 194);
+      padding: 20px;
+      width: 250px;
+      margin: 200px auto;
+      text-align: center;
+      border-radius: 10px;
+    }
+
+    button {
+      padding: 5px 10px;
+      margin-top: 10px;
+    } */ */
+</style>
+    <body>
+        <h1 id="h"><b>welcome to javascript quiz</h2></b>
+        <div id="dv1">
+          
+        </div>
+        <h3 id="score">score:0</h3>
+        <h4 id="result"></h4>
+        <h1 id="p"></h1>
+
+
+        <!-- <div id="modal">
+          <div id="content">
+            <p id="msg"></p>
+            <button onclick="closemodal()">ok</button>
+          </div>
+        </div> -->
+
+  
+
+    <script>
+     
+        const questions=[
+            {
+                qtn:"Q1: The output method in JavaScript is _______.",
+                Options:["printf()","echo()" , "document.write()","cout<<"],
+                ans:"document.write()"
+            },
+            {
+                qtn:"Q2: Arrays in JavaScript are enclosed in _______.",
+              Options:[ "<>","{}","[]","()"],
+                ans:"[]"
+            },
+              {
+                qtn:"Q3: Which symbol is used for comments in JavaScript?",
+                Options:["//","<!-->","#","**"],
+                ans:"//"
+            },
+              {
+                qtn:"Q5: Which method is used to write a message in the browser console?",
+                Options:["console.write()", "log.console()", "console.log()", "print()"],
+                ans: "console.log()"
+            
+            },
+              {
+                qtn: "Q4. What does DOM stand for?",
+        Options: ["Document Object Model", "Data Object Method", "Document Oriented Model", "Display Object Management"],
+        ans: "Document Object Model"
+              
+            }
+        ];
+        let currentquestion=0;
+        let score=0;
+
+
+  //          function showModal(message) {
+  //   document.getElementById("msg").innerText = message;
+  //   document.getElementById("modal").style.display = "block";
+  // }
+
+  // // Close modal
+  // function closeModal() {
+  //   document.getElementById("modal").style.display = "none";
+  // }
+
+        const quizdiv=document.getElementById("dv1");
+        const displayscore=document.getElementById("score")
+const complete=document.getElementById("p")
+ const result=document.getElementById("result")
+
+
+        function showquestion(){
+            if(currentquestion<questions.length){
+                const q=questions[currentquestion];
+                quizdiv.innerHTML="<h3><b>"+q.qtn+"</b></h3>"
+
+           
+    q.Options.forEach(function(i)  {
+           const btn=document.createElement("button")
+           btn.style.height="40px"
+            btn.style.width="110px"
+          btn.style.marginLeft="2px"
+          
+           
+           btn.textContent=i;
+           
+           quizdiv.appendChild(btn);
+
+            btn.addEventListener("click", function() {
+            
+            checkAnswer(i);
+          });
+        });
+    }else{
+
+          quizdiv.style.display = "none";
+        complete.textContent = " Quiz Completed ";
+        complete.style.color = "green";
+        result.innerHTML="final score:"+score+"/"+questions.length
+    }
+
+    }
+  
+
+    function checkAnswer(selected){
+        const correct=questions[currentquestion].ans;
+        
+        if(selected===correct){
+         score++
+         
+     alert("✅ Correct Answer!");
+        }
+        else{
+       alert("❌ Wrong! Correct Answer is " + correct);
+        }
+  displayscore.textContent="score:"+score
+  currentquestion++
+
+
+  showquestion();
+    }
+
+
+  showquestion();
+       
+    </script>
+      </body>
+</html>
