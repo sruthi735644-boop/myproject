@@ -5,7 +5,7 @@ from .views import RegisterView, LoginView,UserProfileView,SendMessageView,ChatM
 from .views import (
     ToggleLikeAPIView,
     AddCommentAPIView,
-    CommentListAPIView,
+    CommentListAPIView,NotificationListAPIView,MarkNotificationsReadAPIView
 )
 
 urlpatterns = [
@@ -24,6 +24,9 @@ urlpatterns = [
     path("posts/<int:post_id>/like/", ToggleLikeAPIView.as_view()),
     path("posts/<int:post_id>/comment/", AddCommentAPIView.as_view()),
     path("posts/<int:post_id>/comments/", CommentListAPIView.as_view()),
+    path("notifications/", NotificationListAPIView.as_view()),
+path("notifications/read/", MarkNotificationsReadAPIView.as_view()),
+
 
 
 

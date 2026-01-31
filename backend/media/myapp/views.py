@@ -26,7 +26,7 @@ from django.contrib.auth import get_user_model
 # backend/myapp/views.py
 from rest_framework import generics, permissions
 from .models import Post,Like,Comment
-from .serializers import PostSerializer
+from .serializers import PostSerializer,NotificationSerializer
 
 
 from rest_framework.generics import ListAPIView
@@ -167,15 +167,17 @@ class MyPostsView(APIView):
 
 
 
+from .models import Notification
+
 class ToggleLikeAPIView(APIView):
     permission_classes = [IsAuthenticated]
 
     def post(self, request, post_id):
         post = get_object_or_404(Post, id=post_id)
 
-        # Prevent self-like
+        # prevent self-like
         if post.author == request.user:
-            return Response({"error": "You cannot like your own post"}, status=400)
+            return Response({"error": "Cannot like own post"}, status=400)
 
         like = Like.objects.filter(user=request.user, post=post)
 
@@ -186,11 +188,18 @@ class ToggleLikeAPIView(APIView):
             Like.objects.create(user=request.user, post=post)
             liked = True
 
+            # 🔔 CREATE NOTIFICATION
+            Notification.objects.create(
+                user=post.author,
+                sender=request.user,
+                post=post,
+                message=f"{request.user.username} liked your post"
+            )
+
         return Response({
             "liked": liked,
             "likes_count": post.likes.count()
         })
-
 
 class AddCommentAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -208,8 +217,16 @@ class AddCommentAPIView(APIView):
             text=text
         )
 
+        # 🔔 CREATE NOTIFICATION (if not own post)
+        if post.author != request.user:
+            Notification.objects.create(
+                user=post.author,
+                sender=request.user,
+                post=post,
+                message=f"{request.user.username} commented on your post"
+            )
+
         return Response(CommentSerializer(comment).data)
-    
 
 class CommentListAPIView(APIView):
     permission_classes = [IsAuthenticated]
@@ -218,3 +235,27 @@ class CommentListAPIView(APIView):
         comments = Comment.objects.filter(post_id=post_id).order_by("-created_at")
         serializer = CommentSerializer(comments, many=True)
         return Response(serializer.data)
+
+
+class NotificationListAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        notifications = Notification.objects.filter(
+            user=request.user
+        ).order_by("-created_at")
+
+        serializer = NotificationSerializer(notifications, many=True)
+        return Response(serializer.data)
+
+
+class MarkNotificationsReadAPIView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def post(self, request):
+        Notification.objects.filter(
+            user=request.user,
+            is_read=False
+        ).update(is_read=True)
+
+        return Response({"status": "success"})
