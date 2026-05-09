@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Developer portfolio</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        background-color: #f4f6f9;
+        color:#333;
+        margin: 0;
+    }
+    header {
+      background: #306998; 
+      color: white;
+      padding: 30px 0;
+    }
+header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+
+header p {
+      margin: 8px 0 0;
+      font-size: 1rem;
+      font-style: italic;
+    }
+
+    nav {
+      background: #222;
+      padding: 10px 0;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #4CAF50;
+    }
+
+.profile {
+      text-align: center;
+      margin: 25px;
+    }
+
+    .profile img {
+      width: 100px;
+      height: 100px;
+      border-radius: 80%;
+      object-fit:cover;
+      border: 5px solid greenyellow;
+
+    }
+
+
+    .about,.skills,.projects,.contact{
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+
+    }
+
+    .about h2, .skills h2, .projects h2, .contact h2 {
+      color: #2e7d32;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+
+.skill-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 15px;
+}
+.skill {
+  background: #e8f5e9;
+  border: 2px solid #4CAF50;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #2e7d32;
+}
+
+.project-card {
+  padding: 20px;
+  margin: 15px 0;
+  border-radius: 8px;
+  background: #f9f9f9;
+  border-left: 5px solid #4CAF50;
+}
+
+    .project-card h3 {
+      margin: 0;
+      color: #333;
+    }
+
+    /* .project-card p {
+      font-size: 15px;
+      margin-top: 10px;
+    } */
+
+    /* Contact */
+    .contact form {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .contact input, .contact textarea {
+      padding: 10px;
+      font-size: 14px;
+      border: 1px solid #ccc;
+      border-radius:5px; 
+    } 
+
+    .contact textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .contact button {
+      padding: 12px;
+      font-size: 15px;
+      font-weight: bold;
+      background: #124950;
+      color: white;
+      border: none;
+      /* border-radius: 5px; */
+      /* cursor: pointer; */
+    }
+
+    .contact button:hover {
+      background: #20c720;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      background: #222;
+      color: white;
+      padding: 15px 0;
+      margin-top: 40px;
+      font-size: 14px;
+    }
+
+
+
+</style>
+
+<body>
+ <header>
+    <h1>Welcome to My Profile</h1>
+    <p>Frontend | Backend | Full Stack Enthusiast</p>
+  </header>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="#">Home</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <!-- Profile -->
+  <div class="profile">
+    <img src="C:\Users\user\Desktop\python\html\WhatsApp Image 2025-09-28 at 18.59.59_8a71cde9.jpg" alt="Profile Picture">
+  </div>
+ <section id="about" class="about">
+    <h2>About Me</h2>
+    <p>I’m a passionate Web Developer who enjoys building modern, responsive, and user-friendly websites.My focus is on writing clean, optimized code and bringing creative ideas to life on the web.</p>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills" class="skills">
+    <section>
+    <h2>My Skills</h2>
+    <div class="skill-list">
+      <div class="skill">HTML</div>
+      <div class="skill">CSS</div>
+      <div class="skill">JavaScript</div>
+      <div class="skill">React</div>
+      <div class="skill">Bootstrap</div>
+      <div class="skill">sql</div>
+      <div class="skill">python</div>
+
+
+    
+  </section>
+
+  <!-- Projects -->
+  <section id="projects" class="projects">
+    <h2>My Projects</h2>
+   <div class="project-card">
+    <h3>Project 1: Crowdfunding Using Blockchain</h3>
+    <p>A decentralized crowdfunding platform built using Ethereum Smart Contracts and Web3.js.It allows users to create campaigns, contribute funds securely, and ensures transparency with blockchain technology.</p>
+  </div>
+</section>
+  
+<section id="contact" class="contact">
+    <h2>Contact Me</h2>
+    <!-- <p>Have a project idea or just want to say hello? Feel free to reach out!</p> -->
+    <form>
+      <input type="text" placeholder="Your Name" required>
+      <input type="email" placeholder="Your Email" required>
+      <textarea placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    © 2025 Web Developer Portfolio. All rights reserved.
+  </footer>
+
+
+
+</body>
+</html>
