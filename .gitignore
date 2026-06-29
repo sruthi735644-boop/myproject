@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
@@ -21,3 +22,18 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+=======
+# Python / Django
+venv/
+__pycache__/
+*.pyc
+db.sqlite3
+.env
+
+# React
+ui/node_modules/
+ui/build/
+
+# OS
+.DS_Store
+>>>>>>> 671f74bde333b452fe7e067574c319a126ad88d1
